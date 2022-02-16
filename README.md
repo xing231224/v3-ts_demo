@@ -90,7 +90,7 @@
 ### Clone to local
 
 ```bash
-git clone https://github.com/nekobc1998923/vitecamp.git my-vitecamp-app
+git clone https://github.com/xing231224/v3-ts_demo.git my-vitecamp-app
 cd my-vitecamp-app
 npm i
 ```
