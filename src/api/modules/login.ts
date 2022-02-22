@@ -11,8 +11,8 @@ import service from '@/api/http';
 const loginApi = {
   // 验证登录实例
   postVerification: (params: object) => service.post(`/login`, params),
-  register: (params: object) => service.post("/register", params),
-  getAllInfo: () => service.get("/getLoginInfo")
+  register: (params: object) => service.post('/register', params),
+  getAllInfo: () => service.get('/getLoginInfo'),
 };
 
 export default loginApi;

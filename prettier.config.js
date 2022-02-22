@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-02-12 15:53:45
- * @LastEditTime: 2022-02-16 10:47:11
+ * @LastEditTime: 2022-02-21 10:19:30
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vitecamp\prettier.config.js
@@ -18,16 +18,16 @@ module.exports = {
   bracketSpacing: true,
 
   // 箭头函数的参数无论有几个，都要括号包裹
-  arrowParens: "always",
+  arrowParens: 'always',
 
   // 换行符的使用
-  endOfLine: "lf",
+  endOfLine: 'lf',
 
   // 是否用单引号， 项目中全部使用单引号
-  singleQuote: "none",
+  singleQuote: true,
 
   // 对象或者数组的最后一个元素后面是否要加逗号
-  trailingComma: "all",
+  trailingComma: 'all',
 
   // 是否加分号，项目中统一加分号
   semi: true,

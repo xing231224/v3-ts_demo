@@ -5,6 +5,15 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    IEpIphone: typeof import('~icons/ep/iphone')['default']
+    IIcomoonFreeCodepen: typeof import('~icons/icomoon-free/codepen')['default']
+    IMdiEye: typeof import('~icons/mdi/eye')['default']
+    IMdiLockOutline: typeof import('~icons/mdi/lock-outline')['default']
+    IPhEyeClosedBold: typeof import('~icons/ph/eye-closed-bold')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
     ZhProcess: typeof import('./components/ZhProcess.md')['default']
   }

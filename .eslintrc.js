@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-02-12 15:53:45
- * @LastEditTime: 2022-02-14 10:21:12
+ * @LastEditTime: 2022-02-21 11:26:06
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vitecamp\.eslintrc.js
@@ -39,6 +39,11 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
-    'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-explicit-any': ['off'],
+    '@typescript-eslint/ban-types': ['off'],
+    'consistent-return': ['off'],
+    'no-shadow': ['off'],
+    'vue/multi-word-component-names': ['off'],
+    camelcase: 'off',
   },
 };

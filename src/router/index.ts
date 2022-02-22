@@ -1,8 +1,17 @@
+/*
+ * @Author: your name
+ * @Date: 2022-02-16 12:40:17
+ * @LastEditTime: 2022-02-21 10:10:40
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AEc
+ * @FilePath: \v3-ts_demo\src\router\index.ts
+ */
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
 import NProgress from 'nprogress';
 import exceptionRoutes from '@/router/route.exception';
 import asyncRoutes from '@/router/route.async';
 import commonRoutes from '@/router/route.common';
+// import routers from '@/store/routers';
 
 const routes: Array<RouteRecordRaw> = [
   // 无鉴权的业务路由 ex:登录
@@ -25,17 +34,23 @@ const router: Router = createRouter({
  * @param {RouteLocationNormalizedLoaded} from  当前导航正在离开的路由
  * @return {*}
  */
-router.beforeEach((to, from) => {
-  console.log('全局路由前置守卫：to,from\n', to, from);
-  // 设置页面标题
-  document.title = (to.meta.title as string) || import.meta.env.VITE_APP_TITLE;
+router.beforeEach((to) => {
   if (!NProgress.isStarted()) {
     NProgress.start();
   }
+
+  // const myRouters = routers()
+  // myRouters.GenerateRoutes().then(() => {
+  //   myRouters.getAddRouters.forEach(item => {
+  //     router.addRoute(item)
+  //   })
+  //   // next({ ...to })
+  // })
+  // 设置页面标题
+  document.title = (to.meta.title as string) || import.meta.env.VITE_APP_TITLE;
 });
 
-router.afterEach((to, from) => {
-  console.log('全局路由后置守卫：to,from\n', to, from);
+router.afterEach(() => {
   NProgress.done();
 });
 
