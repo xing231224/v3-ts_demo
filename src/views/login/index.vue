@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-16 14:12:32
- * @LastEditTime: 2022-02-21 17:52:58
+ * @LastEditTime: 2022-02-26 15:04:46
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \v3-ts_demo\src\views\login\index.vue
@@ -228,87 +228,79 @@ const text = computed(() => {
   }
   return state.time > 0 ? `${state.time}s` : '重新获取';
 });
-const methods = reactive({
-  handleLogin() {
-    (loginFormRef.value as any).validate(async (valid: boolean) => {
-      if (valid) {
-        state.loading = true;
-        router.push('/home');
-        // mobileLogin(this.loginForm).then((res) => {
-        //   if (res.data.status === 200) {
-        //     getUserInfo(res.data.data).then((response) => {
-        //       if (response.data.status === 200) {
-        //         let info = response.data.data;
-        //         info.memberId = res.data.data;
-        //         localStorage.setItem("info", JSON.stringify(info));
-        //         this.$message.success("登陆成功！！！");
-        //         this.$router.push("/advanceOrder/creatOrder");
-        //       }
-        //     });
-        //   } else {
-        //     this.$message.error(res.data.msg);
-        //   }
-        // });
-        // Just to simulate the time of the request
-        // setTimeout(() => {
-        //   state.loading = false;
-        // }, 0.5 * 1000);
-      } else {
-        return false;
-      }
-    });
-  },
-  go() {
-    router.push('/404');
-  },
-  getMobileCode: () => {
-    state.time = 60;
-    if (!state.loginForm.mobile) {
-      proxy.$tips('error', '请输入手机号码');
-    } else if (!/^1[34578]\d{9}$/.test(state.loginForm.mobile)) {
-      proxy.$tips('error', '手机号格式不正确');
-    } else {
-      console.log(methods);
-
-      methods.timer();
-      // getCode(this.loginForm).then((response) => {
-      //   if (response.data.status === 200) {
-      //     this.timer();
-      //     this.$message.success("验证码发送成功");
+const handleLogin = () => {
+  (loginFormRef.value as any).validate(async (valid: boolean) => {
+    if (valid) {
+      state.loading = true;
+      router.push('/home');
+      // mobileLogin(this.loginForm).then((res) => {
+      //   if (res.data.status === 200) {
+      //     getUserInfo(res.data.data).then((response) => {
+      //       if (response.data.status === 200) {
+      //         let info = response.data.data;
+      //         info.memberId = res.data.data;
+      //         localStorage.setItem("info", JSON.stringify(info));
+      //         this.$message.success("登陆成功！！！");
+      //         this.$router.push("/advanceOrder/creatOrder");
+      //       }
+      //     });
       //   } else {
-      //     this.$message.error(response.data.msg);
+      //     this.$message.error(res.data.msg);
       //   }
       // });
-    }
-  },
-  timer() {
-    if (state.time > 0) {
-      state.timeFlag = true;
-      // eslint-disable-next-line no-plusplus
-      state.time--;
-      setTimeout(methods.timer, 1000);
+      // Just to simulate the time of the request
+      // setTimeout(() => {
+      //   state.loading = false;
+      // }, 0.5 * 1000);
     } else {
-      state.timeFlag = false;
+      return false;
     }
-  },
-  checkCapslock(e: any) {
-    const { key } = e;
-    if (!key) return;
-    state.capsTooltip = key !== null && key.length === 1 && key >= 'A' && key <= 'Z';
-  },
-  showPwd() {
-    if (state.passwordType === 'password') {
-      state.passwordType = '';
-    } else {
-      state.passwordType = 'password';
-    }
-    nextTick(() => {
-      (passwordRef.value as any).focus();
-    });
-  },
-});
+  });
+};
+function timer() {
+  if (state.time > 0) {
+    state.timeFlag = true;
+    // eslint-disable-next-line no-plusplus
+    state.time--;
+    setTimeout(timer, 1000);
+  } else {
+    state.timeFlag = false;
+  }
+}
+const getMobileCode = () => {
+  state.time = 60;
+  if (!state.loginForm.mobile) {
+    proxy.$tips('error', '请输入手机号码');
+  } else if (!/^1[34578]\d{9}$/.test(state.loginForm.mobile)) {
+    proxy.$tips('error', '手机号格式不正确');
+  } else {
+    timer();
+    // getCode(this.loginForm).then((response) => {
+    //   if (response.data.status === 200) {
+    //     this.timer();
+    //     this.$message.success("验证码发送成功");
+    //   } else {
+    //     this.$message.error(response.data.msg);
+    //   }
+    // });
+  }
+};
+function checkCapslock(e: any) {
+  const { key } = e;
+  if (!key) return;
+  state.capsTooltip = key !== null && key.length === 1 && key >= 'A' && key <= 'Z';
+}
+function showPwd() {
+  if (state.passwordType === 'password') {
+    state.passwordType = '';
+  } else {
+    state.passwordType = 'password';
+  }
+  nextTick(() => {
+    (passwordRef.value as any).focus();
+  });
+}
 const { loginForm, loginRules, loading, isBlur, passwordType, capsTooltip, timeFlag } = toRefs(state);
-const { handleLogin, getMobileCode, checkCapslock, showPwd } = toRefs(methods);
 </script>
 
 <style lang="scss" scoped>
